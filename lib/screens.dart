@@ -625,20 +625,264 @@ class _StepScreenState extends State<StepScreen> {
     onStepCancel: _currentStep > 0 ? () => setState(() => _currentStep -= 1) : null,
       steps: <Step>[
         new Step(
-          title: new Text('Shipping'),
-          content: new Text('This is the first step.'),
+          title: new Text('Vehicle Basic Details'),
+          content: Column(
+            children: <Widget>[
+              new DropdownButton<String>(
+                isExpanded: true,
+                items: <String>['SPORTS BIKE', 'REGULAR BIKE', 'SPORTS CAR', 'REGULAR CAR'].map((String value) {
+                  return new DropdownMenuItem<String>(
+                    value: value,
+                    child: new Text(value),
+                  );
+                }).toList(),
+                hint: Text("Type of Vehicle"),
+                onChanged: (_) {},
+              ),
+              new DropdownButton<String>(
+                isExpanded: true,
+                items: <String>['Yamaha', 'BMW', 'Suzuki', 'Kawasaki'].map((String value) {
+                  return new DropdownMenuItem<String>(
+                    value: value,
+                    child: new Text(value),
+                  );
+                }).toList(),
+                hint: Text("Brand"),
+                onChanged: (_) {},
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Ad Title'),
+              ),
+              Padding(
+                  padding: const EdgeInsets.only(
+                    left: 0,
+                    top: 20,
+                    right: 0,
+                    bottom: 20,
+                  ),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 30.0,
+                child: RaisedButton(
+                  color: Color(0XFFFF0000),
+                  child: Row(
+                    children: <Widget>[
+                      Text('Upload image', style: TextStyle(color: Colors.white),),
+                      Icon(Icons.play_arrow, color: Colors.white,),
+                    ],
+                  ),
+                ),
+              )),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Price in Rs /Day'),
+                  keyboardType: TextInputType.number,
+                  validator: numberValidator,
+                  textAlign: TextAlign.right
+              ),
+              TextFormField(
+                  decoration: InputDecoration(labelText: 'Security Deposit in Rs'),
+                  keyboardType: TextInputType.number,
+                  validator: numberValidator,
+                  textAlign: TextAlign.right
+              )
+            ],
+          ),
           isActive: _currentStep >= 0,
           state: _currentStep >= 0 ? StepState.complete : StepState.disabled,
         ),
         new Step(
-          title: new Text('Payment'),
-          content: new Text('This is the second step.'),
+          title: new Text('Upload Documents'),
+          content: Column(
+            children: <Widget>[
+
+              Padding(
+                  padding: const EdgeInsets.only(
+                    left: 0,
+                    top: 20,
+                    right: 0,
+                    bottom: 20,
+                  ),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 30.0,
+                    child: RaisedButton(
+                      color: Color(0XFFFF0000),
+                      child: Row(
+                        children: <Widget>[
+                          Text('RC Certificate', style: TextStyle(color: Colors.white),),
+                          Icon(Icons.play_arrow, color: Colors.white,),
+                        ],
+                      ),
+                    ),
+                  )),
+              Padding(
+                  padding: const EdgeInsets.only(
+                    left: 0,
+                    top: 20,
+                    right: 0,
+                    bottom: 20,
+                  ),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 30.0,
+                    child: RaisedButton(
+                      color: Color(0XFFFF0000),
+                      child: Row(
+                        children: <Widget>[
+                          Text('Insurance Policy', style: TextStyle(color: Colors.white),),
+                          Icon(Icons.play_arrow, color: Colors.white,),
+                        ],
+                      ),
+                    ),
+                  )),
+              Padding(
+                  padding: const EdgeInsets.only(
+                    left: 0,
+                    top: 20,
+                    right: 0,
+                    bottom: 20,
+                  ),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 30.0,
+                    child: RaisedButton(
+                      color: Color(0XFFFF0000),
+                      child: Row(
+                        children: <Widget>[
+                          Text('Pollution certificate', style: TextStyle(color: Colors.white),),
+                          Icon(Icons.play_arrow, color: Colors.white,),
+                        ],
+                      ),
+                    ),
+                  )),
+              Padding(
+                  padding: const EdgeInsets.only(
+                    left: 0,
+                    top: 20,
+                    right: 0,
+                    bottom: 20,
+                  ),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 30.0,
+                    child: RaisedButton(
+                      color: Color(0XFFFF0000),
+                      child: Row(
+                        children: <Widget>[
+                          Text('Fitness certificate', style: TextStyle(color: Colors.white),),
+                          Icon(Icons.play_arrow, color: Colors.white,),
+                        ],
+                      ),
+                    ),
+                  )),
+            ],
+          ),
           isActive: _currentStep >= 0,
           state: _currentStep >= 1 ? StepState.complete : StepState.disabled,
         ),
         new Step(
-          title: new Text('Order'),
-          content: new Text('This is the third step.'),
+          title: new Text('Pickup Location'),
+          content: Column(
+            children: <Widget>[
+              TextFormField(
+                decoration: InputDecoration(labelText: 'State'),
+              ),
+              TextFormField(
+                  decoration: InputDecoration(labelText: 'District'),
+                  keyboardType: TextInputType.number,
+                  validator: numberValidator,
+                  textAlign: TextAlign.right
+              ),
+              TextFormField(
+                  decoration: InputDecoration(labelText: 'Exact location'),
+                  keyboardType: TextInputType.number,
+                  validator: numberValidator,
+                  textAlign: TextAlign.right
+              )
+            ],
+          ),
+          isActive: _currentStep >= 0,
+          state: _currentStep >= 0 ? StepState.complete : StepState.disabled,
+        ),
+        new Step(
+          title: new Text('Availibility Time'),
+          content: Column(
+            children: <Widget>[
+              Padding(
+                  padding: const EdgeInsets.only(
+                    left: 0,
+                    top: 20,
+                    right: 0,
+                    bottom: 20,
+                  ),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 30.0,
+                    child: RaisedButton(
+                      color: Color(0XFFFF0000),
+                      child: Row(
+                        children: <Widget>[
+                          Text('From', style: TextStyle(color: Colors.white),),
+                          Icon(Icons.calendar_today, color: Colors.white,),
+                        ],
+                      ),
+                    ),
+                  )),
+              Padding(
+                  padding: const EdgeInsets.only(
+                    left: 0,
+                    top: 20,
+                    right: 0,
+                    bottom: 20,
+                  ),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 30.0,
+                    child: RaisedButton(
+                      color: Color(0XFFFF0000),
+                      child: Row(
+                        children: <Widget>[
+                          Text('To', style: TextStyle(color: Colors.white),),
+                          Icon(Icons.calendar_today, color: Colors.white,),
+                        ],
+                      ),
+                    ),
+                  )),
+              CheckboxListTile(
+                title: Text("Check this box, if the vehicle is available at anytime."), //    <-- label
+                value: false,
+                // onChanged: (newValue) { ... },
+              )
+            ],
+          ),
+          isActive: _currentStep >= 0,
+          state: _currentStep >= 0 ? StepState.complete : StepState.disabled,
+        ),
+        new Step(
+          title: new Text('Done'),
+          content: Column(
+            children: <Widget>[
+              Padding(
+                  padding: const EdgeInsets.only(
+                    left: 0,
+                    top: 20,
+                    right: 0,
+                    bottom: 20,
+                  ),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 30.0,
+                    child: RaisedButton(
+                      color: Color(0XFF03A9F4),
+                      child: Row(
+                        children: <Widget>[
+                          Text('Submit Vehicle', style: TextStyle(color: Colors.white),)
+                        ],
+                      ),
+                    ),
+                  )),
+            ],
+          ),
           isActive: _currentStep >= 0,
           state: _currentStep >= 2 ? StepState.complete : StepState.disabled,
         ),
@@ -649,6 +893,17 @@ class _StepScreenState extends State<StepScreen> {
   }
 
 
+
+  String numberValidator(String value) {
+    if(value == null) {
+      return null;
+    }
+    final n = num.tryParse(value);
+    if(n == null) {
+      return '"$value" is not a valid number';
+    }
+    return null;
+  }
 }
 
 /*HomeScreen Code start*/
